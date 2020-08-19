@@ -1,0 +1,19 @@
+<div class="container">
+    <h3 >Office Transactions</h3>
+    <a style="margin-left: 20px;border: solid black 1px;float: right;margin-top: -35px;" [routerLink]="'/addTransaction'" routerLinkActive="active"> Add Transaction </a>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Descriptions</th>
+            <th>Credit</th>
+            <th>Debit</th>
+            <th>Running Balance</th>
+        </tr>
+        <tr *ngFor ="let data of oldData">
+            <td>{{data.newDate}}</td>
+            <td>{{data.description}}</td>
+            <td >{{(data.transactiontype == 'credit') ? data.amount : 0}}</td>
+            <td >{{(data.transactiontype == 'debit') ? data.amount : 0}}</td>
+            <td>{{oldBalance}}</td>
+          </tr>
+    </table>
