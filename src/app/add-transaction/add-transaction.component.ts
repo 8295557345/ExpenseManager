@@ -12,6 +12,8 @@ export class AddTransactionComponent implements OnInit {
   amt : any;
   description : any;
   dataObject;
+  availbalance = 5000;
+  latestBalance:any;
   newDate = new Date();
   constructor(private addService: AddTransactionService,private datePipe: DatePipe) { }
 
@@ -22,11 +24,22 @@ export class AddTransactionComponent implements OnInit {
   }
 
   onSave(){
+    this.latestBalance =this.addService.getAvalbalance();
+    if(this.latestBalance!=''){
+      this.availbalance = this.latestBalance;
+    }
+    if(this.Ttype == 'credit'){
+      this.availbalance=this.availbalance+this.amt;
+    }else {
+      this.availbalance=this.availbalance-this.amt;
+    }
+    this.addService.setAvailBalance(this.availbalance);
     this.dataObject={
       newDate : this.datePipe.transform(this.newDate, 'yyyy-MM-dd'),
       transactiontype : this.Ttype,
       amount : this.amt,
-      description : this.description
+      description : this.description,
+      availableBalance : this.availbalance
     }
     this.addService.saveData(this.dataObject);
   }

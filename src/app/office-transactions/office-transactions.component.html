@@ -14,6 +14,6 @@
             <td>{{data.description}}</td>
             <td >{{(data.transactiontype == 'credit') ? data.amount : 0}}</td>
             <td >{{(data.transactiontype == 'debit') ? data.amount : 0}}</td>
-            <td>{{oldBalance}}</td>
+            <td>{{data.availableBalance}}</td>
           </tr>
     </table>
